@@ -4,16 +4,15 @@ locals {
   bastion_id            = flatten(module.bastion[*].id)
   http_proxy_private_ip = flatten(module.http_proxy[*].private_ip)
   http_proxy_id         = flatten(module.http_proxy[*].id)
-  app_private_ip        = flatten(module.app[*].private_ip)
-  app_id                = flatten(module.app[*].id)
-  app_public_ip         = flatten(module.base[*].app_address)
   log_private_ip        = flatten(module.log[*].private_ip)
   log_id                = flatten(module.log[*].id)
   log_public_ip         = flatten(module.base[*].log_address)
-  lb_private_ip        = flatten(module.lb[*].private_ip)
-  lb_id                = flatten(module.lb[*].id)
-  lb_public_ip         = flatten(module.base[*].lb_address)
-
+  lb_private_ip         = flatten(module.lb[*].private_ip)
+  lb_id                 = flatten(module.lb[*].id)
+  lb_public_ip          = flatten(module.base[*].lb_address)
+  dss_private_ip        = flatten(module.dss[*].private_ip)
+  dss_id                = flatten(module.dss[*].id)
+  dss_public_ip         = flatten(module.base[*].dss_address)
 }
 
 output "bastion_id" {
@@ -36,16 +35,6 @@ output "http_proxy_public_ip" {
   value = module.base.http_proxy_address
 }
 
-output "app_id" {
-  value = local.app_id
-}
-output "app_private_ip" {
-  value = local.app_private_ip
-}
-output "app_public_ip" {
-  value = local.app_public_ip
-}
-
 output "log_id" {
   value = local.log_id
 }
@@ -65,3 +54,15 @@ output "lb_private_ip" {
 output "lb_public_ip" {
   value = local.lb_public_ip
 }
+
+output "dss_id" {
+  value = local.dss_id
+}
+output "dss_private_ip" {
+  value = local.dss_private_ip
+}
+output "dss_public_ip" {
+  value = local.dss_public_ip
+}
+
+

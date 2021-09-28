@@ -1,4 +1,4 @@
-module "app-pool" {
+module "datapaas-pool" {
   #source                        = "github.com/pli01/terraform-openstack-dataiku//terraform?ref=main"
   source                        = "../terraform"
   prefix_name                   = var.prefix_name
@@ -34,13 +34,6 @@ module "app-pool" {
   docker_registry_username      = var.docker_registry_username
   docker_registry_token         = var.docker_registry_token
   metric_enable                 = var.metric_enable
-  app_count                     = var.app_count
-  app_flavor                    = var.app_flavor
-  app_metric_variables          = var.app_metric_variables
-  app_data_enable               = var.app_data_enable
-  app_data_size                 = var.app_data_size
-  app_install_script            = var.app_install_script
-  app_variables                 = var.app_variables
   lb_metric_variables           = var.lb_metric_variables
   lb_count                      = var.lb_count
   lb_flavor                     = var.lb_flavor
@@ -51,4 +44,18 @@ module "app-pool" {
   log_variables                 = var.log_variables
   log_data_enable               = var.log_data_enable
   log_data_size                 = var.log_data_size
+  dss_count                     = var.dss_count
+  dss_flavor                    = var.dss_flavor
+  dss_metric_variables          = var.dss_metric_variables
+  dss_data_enable               = var.dss_data_enable
+  dss_data_size                 = var.dss_data_size
+  dss_install_script            = var.dss_install_script
+  dss_variables                 = var.dss_variables
+  tableau_count                 = var.tableau_count
+  tableau_flavor                = var.tableau_flavor
+  tableau_metric_variables      = var.tableau_metric_variables
+  tableau_data_enable           = var.tableau_data_enable
+  tableau_data_size             = var.tableau_data_size
+  tableau_install_script        = var.tableau_install_script
+  tableau_variables             = var.tableau_variables
 }

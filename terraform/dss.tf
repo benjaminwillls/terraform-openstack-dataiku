@@ -1,17 +1,18 @@
-module "app" {
+module "dss" {
   source                   = "./modules/app"
-  maxcount                 = var.app_count
+  maxcount                 = var.dss_count
+  app_name                 = "dss"
   prefix_name              = var.prefix_name
   heat_wait_condition_timeout =  var.heat_wait_condition_timeout
-  fip                      = module.base.app_id
+  fip                      = module.base.dss_id
   network                  = module.base.network_id
   subnet                   = module.base.subnet_id
   source_volid             = module.base.root_volume_id
-  security_group           = module.base.app_secgroup_id
-  app_data_enable          = var.app_data_enable
-  worker_data_volume_id    = openstack_blockstorage_volume_v2.app-data_volume[*].id
+  security_group           = module.base.dss_secgroup_id
+  app_data_enable          = var.dss_data_enable
+  worker_data_volume_id    = openstack_blockstorage_volume_v2.dss-data_volume[*].id
   vol_type                 = var.vol_type
-  flavor                   = var.app_flavor
+  flavor                   = var.dss_flavor
   image                    = var.image
   key_name                 = var.key_name
   no_proxy                 = var.no_proxy
@@ -32,9 +33,9 @@ module "app" {
   docker_registry_token    = var.docker_registry_token
   metric_enable            = var.metric_enable
   metric_install_script    = var.metric_install_script
-  metric_variables         = var.app_metric_variables
-  app_install_script       = var.app_install_script
-  app_variables            = var.app_variables
+  metric_variables         = var.dss_metric_variables
+  app_install_script       = var.dss_install_script
+  app_variables            = var.dss_variables
   depends_on = [
     module.base,
     module.bastion,

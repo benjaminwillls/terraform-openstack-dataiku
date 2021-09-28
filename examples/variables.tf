@@ -18,10 +18,6 @@ variable "http_proxy_count" {
   default = 1
 }
 
-variable "app_count" {
-  type    = number
-  default = 1
-}
 variable "log_count" {
   type    = number
   default = 1
@@ -91,10 +87,6 @@ variable "bastion_flavor" {
   default = "t1.small"
 }
 variable "http_proxy_flavor" {
-  type    = string
-  default = "t1.small"
-}
-variable "app_flavor" {
   type    = string
   default = "t1.small"
 }
@@ -169,24 +161,11 @@ variable "metric_enable" {
   type = bool
   default = false
 }
-variable "app_metric_variables" {
-   type = map
-   default = {}
-}
 variable "lb_metric_variables" {
    type = map
    default = {}
 }
 
-
-variable "app_install_script" {
-  default = ""
-}
-
-variable "app_variables" {
-   type = map
-   default = {}
-}
 variable "log_variables" {
   type = map
   default = {}
@@ -211,10 +190,56 @@ variable "log_data_enable" {
 variable "log_data_size" {
   type = number
 }
-variable "app_data_enable" {
+
+
+variable "dss_flavor" {
+  type    = string
+  default = "t1.small"
+}
+variable "dss_count" {
+  type    = number
+  default = 1
+}
+variable "dss_metric_variables" {
+   type = map
+   default = {}
+}
+variable "dss_install_script" {
+  default = ""
+}
+variable "dss_variables" {
+   type = map
+   default = {}
+}
+variable "dss_data_enable" {
   type = bool
 }
-variable "app_data_size" {
+variable "dss_data_size" {
   type = number
 }
 
+variable "tableau_flavor" {
+  type    = string
+  default = "t1.small"
+}
+variable "tableau_count" {
+  type    = number
+  default = 1
+}
+variable "tableau_metric_variables" {
+   type = map
+   default = {}
+}
+variable "tableau_install_script" {
+  default = ""
+}
+variable "tableau_variables" {
+   type = map
+   default = {}
+}
+variable "tableau_data_enable" {
+  type = bool
+}
+variable "tableau_data_size" {
+  type = number
+}

@@ -156,11 +156,6 @@ variable "metric_install_script" {
   default = "https://raw.githubusercontent.com/pli01/beat-stack/master/ci/docker-deploy.sh"
 }
 
-variable "app_metric_variables" {
-  type = map
-  default = {}
-}
-
 variable "lb_metric_variables" {
   type = map
   default = {}
@@ -210,27 +205,33 @@ variable "lb_variables" {
 }
 
 # application stack
-variable "app_count" {
+variable "dss_count" {
   type    = number
   default = 1
 }
-variable "app_flavor" {
+variable "dss_flavor" {
   type    = string
   default = "t1.small"
 }
-variable "app_data_enable" {
+variable "dss_data_enable" {
   type = bool
   default = false
 }
-variable "app_data_size" {
+variable "dss_data_size" {
   type = number
   default = 0
 }
 
-variable "app_install_script" {
+variable "dss_install_script" {
   default = "https://raw.githubusercontent.com/pli01/terraform-openstack-dataiku/main/samples/app/whoami/whoami-docker-deploy.sh"
 }
-variable "app_variables" {
+variable "dss_variables" {
     type = map
     default = {}
 }
+variable "dss_metric_variables" {
+  type = map
+  default = {}
+}
+
+

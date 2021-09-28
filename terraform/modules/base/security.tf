@@ -53,34 +53,6 @@ resource "openstack_networking_secgroup_rule_v2" "proxy_worker_http_proxy_secgro
   security_group_id = openstack_networking_secgroup_v2.http_proxy_secgroup_1.id
 }
 
-# app
-resource "openstack_networking_secgroup_v2" "app_secgroup_1" {
-  name        = format("%s-%s", var.prefix_name, "app_secgroup_1")
-  description = "app security group"
-  #delete_default_rules = true
-}
-
-resource "openstack_networking_secgroup_rule_v2" "ssh_worker_app_secgroup_rule_1" {
-  direction         = "ingress"
-  ethertype         = "IPv4"
-  protocol          = "tcp"
-  port_range_min    = 22
-  port_range_max    = 22
-  remote_ip_prefix  = var.network_worker["cidr"]
-  security_group_id = openstack_networking_secgroup_v2.app_secgroup_1.id
-}
-
-# Add http to app
-resource "openstack_networking_secgroup_rule_v2" "http_worker_app_secgroup_rule_1" {
-  direction         = "ingress"
-  ethertype         = "IPv4"
-  protocol          = "tcp"
-  port_range_min    = 80
-  port_range_max    = 80
-  remote_ip_prefix  = "0.0.0.0/0"
-  security_group_id = openstack_networking_secgroup_v2.app_secgroup_1.id
-}
-
 # log
 resource "openstack_networking_secgroup_v2" "log_secgroup_1" {
   name        = format("%s-%s", var.prefix_name, "log_secgroup_1")
@@ -162,4 +134,31 @@ resource "openstack_networking_secgroup_rule_v2" "http_worker_lb_secgroup_rule_1
   security_group_id = openstack_networking_secgroup_v2.lb_secgroup_1.id
 }
 
+# dss
+resource "openstack_networking_secgroup_v2" "dss_secgroup_1" {
+  name        = format("%s-%s", var.prefix_name, "dss_secgroup_1")
+  description = "dss security group"
+  #delete_default_rules = true
+}
+
+resource "openstack_networking_secgroup_rule_v2" "ssh_worker_dss_secgroup_rule_1" {
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  protocol          = "tcp"
+  port_range_min    = 22
+  port_range_max    = 22
+  remote_ip_prefix  = var.network_worker["cidr"]
+  security_group_id = openstack_networking_secgroup_v2.dss_secgroup_1.id
+}
+
+# Add http to dss
+resource "openstack_networking_secgroup_rule_v2" "http_worker_dss_secgroup_rule_1" {
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  protocol          = "tcp"
+  port_range_min    = 80
+  port_range_max    = 80
+  remote_ip_prefix  = "0.0.0.0/0"
+  security_group_id = openstack_networking_secgroup_v2.dss_secgroup_1.id
+}
 

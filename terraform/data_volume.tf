@@ -11,9 +11,9 @@ resource "openstack_blockstorage_volume_v2" "log-data_volume" {
   size        = var.log_data_size
   volume_type = var.vol_type
 }
-resource "openstack_blockstorage_volume_v2" "app-data_volume" {
-  count = var.app_data_enable ? var.app_count : 0
-  name        = format("%s-%s-%s-%s", var.prefix_name, "app", count.index + 1, "data-volume")
-  size        = var.app_data_size
+resource "openstack_blockstorage_volume_v2" "dss-data_volume" {
+  count = var.dss_data_enable ? var.dss_count : 0
+  name        = format("%s-%s-%s-%s", var.prefix_name, "dss", count.index + 1, "data-volume")
+  size        = var.dss_data_size
   volume_type = var.vol_type
 }

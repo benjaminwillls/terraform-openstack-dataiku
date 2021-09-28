@@ -44,10 +44,6 @@ variable "image" {
 variable "most_recent_image" {
   default = "false"
 }
-variable "app_count" {
-  type    = number
-  default = 1
-}
 variable "log_count" {
   type    = number
   default = 0
@@ -55,4 +51,9 @@ variable "log_count" {
 variable "lb_count" {
   type    = number
   default = 0
+}
+
+variable "dss_count" {
+  type    = number
+  default = 1
 }

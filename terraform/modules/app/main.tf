@@ -2,7 +2,7 @@
 # create heat stack
 resource "openstack_orchestration_stack_v1" "app" {
   count = var.maxcount
-  name  = format("%s-%s-%s", var.prefix_name, "app", count.index + 1)
+  name  = format("%s-%s-%s", var.prefix_name, var.app_name, count.index + 1)
   # override heat parameters
   parameters = {
     wait_condition_timeout = var.heat_wait_condition_timeout
@@ -33,7 +33,7 @@ resource "openstack_orchestration_stack_v1" "app" {
   }
   disable_rollback = true
   #  disable_rollback = false
-  timeout = 30
+  timeout = 50
   lifecycle {
   ignore_changes = [
      parameters,

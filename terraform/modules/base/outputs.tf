@@ -33,15 +33,15 @@ output "http_proxy_secgroup_id" {
   value = openstack_networking_secgroup_v2.http_proxy_secgroup_1.id
 }
 
-# app
-output "app_id" {
-  value = openstack_networking_floatingip_v2.app[*].id
+# dss
+output "dss_id" {
+  value = openstack_networking_floatingip_v2.dss[*].id
 }
-output "app_address" {
-  value = openstack_networking_floatingip_v2.app[*].address
+output "dss_address" {
+  value = openstack_networking_floatingip_v2.dss[*].address
 }
-output "app_secgroup_id" {
-  value = openstack_networking_secgroup_v2.app_secgroup_1.id
+output "dss_secgroup_id" {
+  value = openstack_networking_secgroup_v2.dss_secgroup_1.id
 }
 # log
 output "log_id" {
