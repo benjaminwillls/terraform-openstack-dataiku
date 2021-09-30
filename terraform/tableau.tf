@@ -86,7 +86,6 @@ locals {
   tableau_public_ip     = flatten(module.base[*].tableau_address)
 }
 
-
 output "tableau_id" {
   value = local.tableau_id
 }
@@ -96,5 +95,3 @@ output "tableau_private_ip" {
 output "tableau_public_ip" {
   value = local.tableau_public_ip
 }
-
-

@@ -47,4 +47,14 @@ output "tableau_public_ip" {
   value = module.datapaas-pool.tableau_public_ip
 }
 
+output "postgresql_id" {
+  value = module.datapaas-pool.postgresql_id
+}
+output "postgresql_private_ip" {
+  value = module.datapaas-pool.postgresql_private_ip
+}
+output "postgresql_public_ip" {
+  value = module.datapaas-pool.postgresql_public_ip
+}
+
 

@@ -243,3 +243,29 @@ variable "tableau_data_enable" {
 variable "tableau_data_size" {
   type = number
 }
+
+variable "postgresql_flavor" {
+  type    = string
+  default = "t1.small"
+}
+variable "postgresql_count" {
+  type    = number
+  default = 1
+}
+variable "postgresql_metric_variables" {
+   type = map
+   default = {}
+}
+variable "postgresql_install_script" {
+  default = ""
+}
+variable "postgresql_variables" {
+   type = map
+   default = {}
+}
+variable "postgresql_data_enable" {
+  type = bool
+}
+variable "postgresql_data_size" {
+  type = number
+}

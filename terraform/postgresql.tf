@@ -1,55 +1,55 @@
 # application stack
-variable "dss_count" {
+variable "postgresql_count" {
   type    = number
   default = 1
 }
-variable "dss_flavor" {
+variable "postgresql_flavor" {
   type    = string
   default = "t1.small"
 }
-variable "dss_data_enable" {
+variable "postgresql_data_enable" {
   type = bool
   default = false
 }
-variable "dss_data_size" {
+variable "postgresql_data_size" {
   type = number
   default = 0
 }
 
-variable "dss_install_script" {
+variable "postgresql_install_script" {
   default = "https://raw.githubusercontent.com/pli01/terraform-openstack-dataiku/main/samples/app/whoami/whoami-docker-deploy.sh"
 }
-variable "dss_variables" {
+variable "postgresql_variables" {
     type = map
     default = {}
 }
-variable "dss_metric_variables" {
+variable "postgresql_metric_variables" {
   type = map
   default = {}
 }
 
-resource "openstack_blockstorage_volume_v2" "dss-data_volume" {
-  count = var.dss_data_enable ? var.dss_count : 0
-  name        = format("%s-%s-%s-%s", var.prefix_name, "dss", count.index + 1, "data-volume")
-  size        = var.dss_data_size
+resource "openstack_blockstorage_volume_v2" "postgresql-data_volume" {
+  count = var.postgresql_data_enable ? var.postgresql_count : 0
+  name        = format("%s-%s-%s-%s", var.prefix_name, "postgresql", count.index + 1, "data-volume")
+  size        = var.postgresql_data_size
   volume_type = var.vol_type
 }
 
-module "dss" {
+module "postgresql" {
   source                   = "./modules/app"
-  maxcount                 = var.dss_count
-  app_name                 = "dss"
+  maxcount                 = var.postgresql_count
+  app_name                 = "postgresql"
   prefix_name              = var.prefix_name
   heat_wait_condition_timeout =  var.heat_wait_condition_timeout
-  fip                      = module.base.dss_id
+  fip                      = module.base.postgresql_id
   network                  = module.base.network_id
   subnet                   = module.base.subnet_id
   source_volid             = module.base.root_volume_id
-  security_group           = module.base.dss_secgroup_id
-  app_data_enable          = var.dss_data_enable
-  worker_data_volume_id    = openstack_blockstorage_volume_v2.dss-data_volume[*].id
+  security_group           = module.base.postgresql_secgroup_id
+  app_data_enable          = var.postgresql_data_enable
+  worker_data_volume_id    = openstack_blockstorage_volume_v2.postgresql-data_volume[*].id
   vol_type                 = var.vol_type
-  flavor                   = var.dss_flavor
+  flavor                   = var.postgresql_flavor
   image                    = var.image
   key_name                 = var.key_name
   no_proxy                 = var.no_proxy
@@ -70,9 +70,9 @@ module "dss" {
   docker_registry_token    = var.docker_registry_token
   metric_enable            = var.metric_enable
   metric_install_script    = var.metric_install_script
-  metric_variables         = var.dss_metric_variables
-  app_install_script       = var.dss_install_script
-  app_variables            = var.dss_variables
+  metric_variables         = var.postgresql_metric_variables
+  app_install_script       = var.postgresql_install_script
+  app_variables            = var.postgresql_variables
   depends_on = [
     module.base,
     module.bastion,
@@ -81,17 +81,17 @@ module "dss" {
 }
 
 locals {
-  dss_private_ip        = flatten(module.dss[*].private_ip)
-  dss_id                = flatten(module.dss[*].id)
-  dss_public_ip         = flatten(module.base[*].dss_address)
+  postgresql_private_ip    = flatten(module.postgresql[*].private_ip)
+  postgresql_id            = flatten(module.postgresql[*].id)
+  postgresql_public_ip     = flatten(module.base[*].postgresql_address)
 }
 
-output "dss_id" {
-  value = local.dss_id
+output "postgresql_id" {
+  value = local.postgresql_id
 }
-output "dss_private_ip" {
-  value = local.dss_private_ip
+output "postgresql_private_ip" {
+  value = local.postgresql_private_ip
 }
-output "dss_public_ip" {
-  value = local.dss_public_ip
+output "postgresql_public_ip" {
+  value = local.postgresql_public_ip
 }

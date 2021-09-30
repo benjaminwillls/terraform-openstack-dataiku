@@ -58,4 +58,11 @@ module "datapaas-pool" {
   tableau_data_size             = var.tableau_data_size
   tableau_install_script        = var.tableau_install_script
   tableau_variables             = var.tableau_variables
+  postgresql_count              = var.postgresql_count
+  postgresql_flavor             = var.postgresql_flavor
+  postgresql_metric_variables   = var.postgresql_metric_variables
+  postgresql_data_enable        = var.postgresql_data_enable
+  postgresql_data_size          = var.postgresql_data_size
+  postgresql_install_script     = var.postgresql_install_script
+  postgresql_variables          = var.postgresql_variables
 }

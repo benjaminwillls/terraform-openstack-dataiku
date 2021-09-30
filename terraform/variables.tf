@@ -72,24 +72,6 @@ variable "ssh_authorized_keys" {
   default = []
 }
 
-# bastion
-variable "bastion_count" {
-  type    = number
-  default = 1
-}
-variable "bastion_flavor" {
-  type    = string
-  default = "t1.small"
-}
-variable "bastion_data_enable" {
-  type = bool
-  default = false
-}
-variable "bastion_data_size" {
-  type = number
-  default = 0
-}
-
 # http-proxy out
 variable "http_proxy_count" {
   type    = number
@@ -200,36 +182,6 @@ variable "lb_install_script" {
   default = "https://raw.githubusercontent.com/pli01/simple-traefik-http-provider/main/ci/docker-deploy.sh"
 }
 variable "lb_variables" {
-  type = map
-  default = {}
-}
-
-# application stack
-variable "dss_count" {
-  type    = number
-  default = 1
-}
-variable "dss_flavor" {
-  type    = string
-  default = "t1.small"
-}
-variable "dss_data_enable" {
-  type = bool
-  default = false
-}
-variable "dss_data_size" {
-  type = number
-  default = 0
-}
-
-variable "dss_install_script" {
-  default = "https://raw.githubusercontent.com/pli01/terraform-openstack-dataiku/main/samples/app/whoami/whoami-docker-deploy.sh"
-}
-variable "dss_variables" {
-    type = map
-    default = {}
-}
-variable "dss_metric_variables" {
   type = map
   default = {}
 }

@@ -14,6 +14,7 @@ module "base" {
   most_recent_image = var.most_recent_image
   dss_count         = var.dss_count
   tableau_count     = var.tableau_count
+  postgresql_count  = var.postgresql_count
   log_count         = var.log_count
   lb_count          = var.lb_count
 }
