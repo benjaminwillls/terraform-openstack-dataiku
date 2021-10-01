@@ -37,6 +37,17 @@ output "lb_public_ip" {
   value = module.datapaas-pool.lb_public_ip
 }
 
+output "dss_id" {
+  value = module.datapaas-pool.dss_id
+}
+output "dss_private_ip" {
+  value = module.datapaas-pool.dss_private_ip
+}
+output "dss_public_ip" {
+  value = module.datapaas-pool.dss_public_ip
+}
+
+
 output "tableau_id" {
   value = module.datapaas-pool.tableau_id
 }
