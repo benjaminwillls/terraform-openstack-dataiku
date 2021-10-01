@@ -52,8 +52,3 @@ variable "lb_count" {
   type    = number
   default = 0
 }
-
-variable "dss_count" {
-  type    = number
-  default = 1
-}
