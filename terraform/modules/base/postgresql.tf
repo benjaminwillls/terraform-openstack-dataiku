@@ -24,8 +24,8 @@ resource "openstack_networking_secgroup_rule_v2" "ssh_worker_postgresql_secgroup
   security_group_id = openstack_networking_secgroup_v2.postgresql_secgroup_1.id
 }
 
-# Add http to postgresql
-resource "openstack_networking_secgroup_rule_v2" "http_worker_postgresql_secgroup_rule_1" {
+# Add postgresl port to postgresql instance
+resource "openstack_networking_secgroup_rule_v2" "postgresl_worker_postgresql_secgroup_rule_1" {
   direction         = "ingress"
   ethertype         = "IPv4"
   protocol          = "tcp"
@@ -33,6 +33,17 @@ resource "openstack_networking_secgroup_rule_v2" "http_worker_postgresql_secgrou
   port_range_max    = 5432
   remote_ip_prefix  = var.network_worker["cidr"]
   # remote_ip_prefix  = "0.0.0.0/0"
+  security_group_id = openstack_networking_secgroup_v2.postgresql_secgroup_1.id
+}
+
+# Add http to postgresql pgadmin
+resource "openstack_networking_secgroup_rule_v2" "http_worker_postgresql_secgroup_rule_1" {
+  direction         = "ingress"
+  ethertype         = "IPv4"
+  protocol          = "tcp"
+  port_range_min    = 80
+  port_range_max    = 80
+  remote_ip_prefix  = "0.0.0.0/0"
   security_group_id = openstack_networking_secgroup_v2.postgresql_secgroup_1.id
 }
 
