@@ -51,6 +51,13 @@ module "datapaas-pool" {
   dss_data_size                 = var.dss_data_size
   dss_install_script            = var.dss_install_script
   dss_variables                 = var.dss_variables
+  automation_count              = var.automation_count
+  automation_flavor             = var.automation_flavor
+  automation_metric_variables   = var.automation_metric_variables
+  automation_data_enable        = var.automation_data_enable
+  automation_data_size          = var.automation_data_size
+  automation_install_script     = var.automation_install_script
+  automation_variables          = var.automation_variables
   tableau_count                 = var.tableau_count
   tableau_flavor                = var.tableau_flavor
   tableau_metric_variables      = var.tableau_metric_variables

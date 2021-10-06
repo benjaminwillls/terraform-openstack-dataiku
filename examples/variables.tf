@@ -218,6 +218,34 @@ variable "dss_data_size" {
   type = number
 }
 
+
+variable "automation_flavor" {
+  type    = string
+  default = "t1.small"
+}
+variable "automation_count" {
+  type    = number
+  default = 1
+}
+variable "automation_metric_variables" {
+   type = map
+   default = {}
+}
+variable "automation_install_script" {
+  default = ""
+}
+variable "automation_variables" {
+   type = map
+   default = {}
+}
+variable "automation_data_enable" {
+  type = bool
+}
+variable "automation_data_size" {
+  type = number
+}
+
+
 variable "tableau_flavor" {
   type    = string
   default = "t1.small"
