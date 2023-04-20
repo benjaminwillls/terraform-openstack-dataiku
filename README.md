@@ -128,3 +128,14 @@ make tf-apply PROJECT="terraform" TF_VAR_FILE="-var-file=/data/terraform/env/dev
 # or
 make tf-deploy PROJECT="terraform" TF_VAR_FILE="-var-file=/data/terraform/env/dev/config.auto.vars"
 ```
+
+# How does it work?
+
+This is a tool that deploys a `Dataiku` project via `OpenStack`: 
+
+- `OpenStack` is a cloud orchestration platform that manages resources, they do not host the compute - they let that out to the platform on which you are orchestrating.
+- `Dataiku` is a low-code/no-code platform in which data engineers and business anlaysts can work together. Essentially Palantir but for the broader business world. Like `OpenStack` it uses external compute.
+
+The challenge that I'm facing is that I can't even build the project. The project is built using a `Makefile`, which is another orchestration tool:
+
+- `Makefiles` are simple bash scripts that is used to compile code.
