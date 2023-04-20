@@ -138,4 +138,28 @@ This is a tool that deploys a `Dataiku` project via `OpenStack`:
 
 The challenge that I'm facing is that I can't even build the project. The project is built using a `Makefile`, which is another orchestration tool:
 
-- `Makefiles` are simple bash scripts that is used to compile code.
+- `Makefiles` are simple bash scripts that is used to compile code. It is called via the `make` command line argument, it can take parameters like so:
+
+```Makefile
+# ./Makefile
+all:
+    echo "build|deploy|destroy"
+build:
+    echo "building"
+deploy:
+    echo "deploy"
+destroy:
+    echo "destroy"
+```
+
+So to call this:
+
+```sh
+make build
+>> echo "building"
+>> building
+```
+
+They simply exist to speed up deployment of complex code.
+
+test action
